@@ -10,7 +10,7 @@ module Pivotal
     end 
 
     def story_id
-      doc.xpath('/activity/stories/story/id').text
+      message.xpath('/activity/stories/story/id').text
     end
 
     def story_url
