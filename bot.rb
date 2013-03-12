@@ -41,6 +41,6 @@ Thread.new {
 #   https://www.pivotaltracker.com/help/integrations?version=v3#activity_web_hook
 post '/' do 
   message = Pivotal::WebhookMessage.new request.body.read
-  bot.channel_list.msg("#{message.description} #{message.story_link}")
+  bot.channel_list.msg("#{message.description} #{message.story_url}")
 end
 
