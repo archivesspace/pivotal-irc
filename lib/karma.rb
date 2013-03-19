@@ -34,14 +34,14 @@ class Karma
   end
 
   match /^@karma?(\s+)?(\S+)?/, method: :show_scores
-  def show_scores(m, whitespace, thing, n=5)
+  def show_scores(m, whitespace, thing, n=3)
     if thing
       m.reply "Karma for #{thing} has been increased #{@database[thing + "_inc"]} times and decreased #{@database[thing + "_dec"]} times for a total karma of #{@database[thing]}."
     else
-      sorted_things = @database.reject { |k, v| k =~ /(_inc|_dec)$/} .to_hash.sort_by { |k, v| v }
-      top_scores   = sorted_things.take(n)
+      sorted_things = @database.reject { |k, v| k =~ /(_inc|_dec)$/} .to_hash.sort_by { |k, v| v.to_i }
+      top_scores   = sorted_things.reverse.take(n)
       m.reply "Highest karma: #{top_scores.map { |thing, value| "#{thing} (#{value})" }.join(", ")}"
-      last_scores   = sorted_things.reverse.take(n).reverse
+      last_scores   = sorted_things.take(n).reverse
       m.reply "Lowest karma: #{last_scores.map { |thing, value| "#{thing} (#{value})" }.join(", ")}"
     end
   end
