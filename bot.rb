@@ -36,9 +36,9 @@ bot = Cinch::Bot.new do
   end
 end
 
-#Thread.new {
+Thread.new {
   bot.start
-#}
+}
 
 # Pivotal Activity Web Hook documentation:
 #   https://www.pivotaltracker.com/help/integrations?version=v3#activity_web_hook
