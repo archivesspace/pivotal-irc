@@ -2,6 +2,8 @@ require 'cinch'
 require 'nokogiri'
 require 'pivotal'
 require 'pivotal-tracker'
+require 'karma'
+require 'remind'
 
 $nick = ENV.fetch('nick', "pivotal-bot")
 $irc_server = ENV.fetch('IRC', "irc.freenode.org")
@@ -21,6 +23,7 @@ bot = Cinch::Bot.new do
   	c.nick = $nick
     c.server = $irc_server
     c.channels = [$channel]
+    c.plugins.plugins = [Karma, NB::Remind]
   end
 
   on :message, "hello" do |m|
