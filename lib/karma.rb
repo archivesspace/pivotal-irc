@@ -36,7 +36,7 @@ class Karma
   match /^@karma?(\s+)?(\S+)?/, method: :show_scores
   def show_scores(m, whitespace, thing, n=3)
     if thing
-      m.reply "Karma for #{thing} has been increased #{@database[thing + "_inc"]} times and decreased #{@database[thing + "_dec"]} times for a total karma of #{@database[thing]}."
+      m.reply "Karma for #{thing} has been increased #{@database[thing + "_inc"].to_i} times and decreased #{@database[thing + "_dec"].to_i} times for a total karma of #{@database[thing].to_i}."
     else
       sorted_things = @database.reject { |k, v| k =~ /(_inc|_dec)$/} .to_hash.sort_by { |k, v| v.to_i }
       top_scores   = sorted_things.reverse.take(n)
@@ -45,7 +45,6 @@ class Karma
       m.reply "Lowest karma: #{last_scores.map { |thing, value| "#{thing} (#{value})" }.join(", ")}"
     end
   end
-  
 
   def update_user(thing)
     yield(thing)
