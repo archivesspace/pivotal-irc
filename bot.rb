@@ -2,8 +2,8 @@ require 'cinch'
 require 'nokogiri'
 require 'pivotal'
 require 'pivotal-tracker'
-require 'karma'
-require 'remind'
+# require 'karma'
+# require 'remind'
 
 $nick = ENV.fetch('nick', "pivotal-bot")
 $irc_server = ENV.fetch('IRC', "irc.freenode.org")
